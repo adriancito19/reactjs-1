@@ -1,38 +1,460 @@
-.App {
-  text-align: center;
+/* app.css */
+
+/* Variables de colores */
+:root {
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --success: #10b981;
+  --danger: #ef4444;
+  --light-bg: #f9fafb;
+  --light-surface: #ffffff;
+  --dark-bg: #111827;
+  --dark-surface: #1f2937;
+  --text-light: #f3f4f6;
+  --text-dark: #1f2937;
+  --text-muted-light: #9ca3af;
+  --text-muted-dark: #4b5563;
+  --border-light: #e5e7eb;
+  --border-dark: #374151;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Resets y estilos generales */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.App-header {
-  background-color: #282c34;
+/* Temas */
+body.light-theme {
+  background-color: var(--light-bg);
+  color: var(--text-dark);
+}
+
+body.dark-theme {
+  background-color: var(--dark-bg);
+  color: var(--text-light);
+}
+
+/* Contenedor principal */
+.app-container {
   min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Cabecera */
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.app-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.app-tagline {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.theme-highlight {
+  color: var(--primary);
+}
+
+/* Botón para cambiar tema */
+.theme-toggle {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  margin: 0 auto;
+  transition: background-color 0.2s;
+}
+
+.dark-theme .theme-toggle {
+  background-color: var(--dark-surface);
+  color: var(--primary);
+}
+
+.theme-toggle:hover {
+  background-color: var(--primary-dark);
+}
+
+.dark-theme .theme-toggle:hover {
+  background-color: #2d3748;
+}
+
+.theme-icon {
+  margin-right: 0.5rem;
+}
+
+/* Navegación por pestañas */
+.tabs {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 1.5rem;
+}
+
+.tabs-container {
+  display: inline-flex;
+  background-color: #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+}
+
+.dark-theme .tabs-container {
+  background-color: var(--dark-surface);
+}
+
+.tab-button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: none;
+  background: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  color: var(--text-muted-dark);
+}
+
+.dark-theme .tab-button {
+  color: var(--text-muted-light);
+}
+
+.tab-button:hover {
+  color: var(--text-dark);
+}
+
+.dark-theme .tab-button:hover {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.tab-button.active {
+  background-color: var(--primary);
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Secciones */
+.card {
+  background-color: var(--light-surface);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.dark-theme .card {
+  background-color: var(--dark-surface);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Contador */
+.counter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.counter-value {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  transition: color 0.2s;
+}
+
+.counter-value.positive {
+  color: var(--success);
+}
+
+.counter-value.negative {
+  color: var(--danger);
+}
+
+.counter-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-circle {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background-color 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-circle:hover {
+  transform: scale(1.05);
+}
+
+.btn-decrement {
+  background-color: var(--danger);
+}
+
+.btn-decrement:hover {
+  background-color: #dc2626;
+}
+
+.btn-increment {
+  background-color: var(--success);
+}
+
+.btn-increment:hover {
+  background-color: #059669;
+}
+
+.btn-reset {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-reset:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+.dark-theme .btn-reset {
+  background-color: var(--dark-surface);
+  color: var(--text-light);
+}
+
+.dark-theme .btn-reset:hover {
+  background-color: #374151;
+}
+
+/* Lista de tareas */
+.task-form {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.task-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--border-light);
+  border-right: none;
+  border-top-left-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.task-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.dark-theme .task-input {
+  background-color: var(--dark-surface);
+  border-color: var(--border-dark);
+  color: var(--text-light);
+}
+
+.btn-add {
+  padding: 0.75rem 1rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-top-right-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-add:hover {
+  background-color: var(--primary-dark);
+}
+
+.tasks-empty {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.tasks-empty-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.tasks-empty-text {
+  font-style: italic;
+  color: var(--text-muted-dark);
+}
+
+.dark-theme .tasks-empty-text {
+  color: var(--text-muted-light);
+}
+
+.tasks-empty-hint {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.task-list {
+  list-style: none;
+  max-height: 16rem;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #f3f4f6;
+  border-radius: 0.375rem;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.dark-theme .task-item {
+  background-color: #374151;
+}
+
+.task-item.completed {
+  opacity: 0.7;
+}
+
+.task-checkbox-label {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  cursor: pointer;
+}
+
+.task-checkbox {
+  margin-right: 0.75rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--primary);
+}
+
+.task-text {
+  cursor: pointer;
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+  color: var(--text-muted-dark);
+}
+
+.dark-theme .task-text.completed {
+  color: var(--text-muted-light);
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-delete:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.delete-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.tasks-summary {
+  margin-top: 1rem;
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+/* Scrollbar personalizada */
+.task-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.task-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 3px;
+}
+
+.dark-theme .task-list::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted-dark);
+}
+
+.dark-theme footer {
+  color: var(--text-muted-light);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .app-title {
+    font-size: 2rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .counter-value {
+    font-size: 4rem;
+  }
+  
+  .btn-circle {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
   }
 }
